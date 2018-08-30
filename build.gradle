@@ -19,7 +19,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile "org.jetbrains.kotlin:kotlin-reflect"
 
-    testImplementation 'org.assertj:assertj-core:3.11.1'
+    // assertion
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
     testImplementation ('org.spekframework.spek2:spek-dsl-jvm:2.0.0-alpha.1')  {
         exclude group: 'org.jetbrains.kotlin'
     }
