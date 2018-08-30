@@ -8,8 +8,6 @@ import kotlin.test.assertFailsWith
 
 object TriangleTest : Spek({
 
-    lateinit var triangle: Triangle
-
     describe("事前条件") {
 
         context("無効な三角形") {
@@ -34,16 +32,28 @@ object TriangleTest : Spek({
         }
     }
 
-    Feature("三角形の種類を判定する") {
+    describe("三角形の種類を判定") {
 
-        Scenario("正三角形") {
+        context("3辺がすべて等しい") {
 
-            Given("３辺にすべて等しい引数を与える") {
-                triangle = Triangle(1, 1, 1)
+            it("verifyは正三角形を返す") {
+                assertEquals(Triangle.Type.EQUILATERAL, Triangle(1, 1, 1).verify())
             }
+        }
 
-            Then("verifyは正三角形を返す") {
-                assertEquals(Triangle.Type.EQUILATERAL, triangle.verify())
+        context("2辺が等しい") {
+
+            it("verifyは二等辺三角形を返す") {
+                assertEquals(Triangle.Type.ISOSCELES, Triangle(2, 2, 3).verify())
+                assertEquals(Triangle.Type.ISOSCELES, Triangle(2, 4, 4).verify())
+                assertEquals(Triangle.Type.ISOSCELES, Triangle(5, 1, 5).verify())
+            }
+        }
+
+        context("3辺がすべて等しくない") {
+
+            it("verifyは通常の三角形を返す") {
+                assertEquals(Triangle.Type.NORMAL, Triangle(3, 4, 5).verify())
             }
         }
     }
