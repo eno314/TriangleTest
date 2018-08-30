@@ -32,14 +32,9 @@ class Triangle(private val x: Int, private val y: Int, private val z: Int) {
         }
     }
 
-    fun verify(): Type? {
-        if (x == y && y == z && z == x) {
-            return Type.EQUILATERAL
-        }
-        if (x == y || y == z || z == x) {
-            return Type.ISOSCELES
-        }
-        return Type.NORMAL
+    fun verify() = when {
+        (x == y && y == z && z == x) -> Type.EQUILATERAL
+        (x == y || y == z || z == x) -> Type.ISOSCELES
+        else -> Type.NORMAL
     }
-
 }
