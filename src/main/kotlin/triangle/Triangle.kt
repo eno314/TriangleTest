@@ -3,8 +3,17 @@ package triangle
 class Triangle(private val x: Int, private val y: Int, private val z: Int) {
 
     enum class Type {
+        /**
+         * 正三角形
+         */
         EQUILATERAL,
+        /**
+         * 二等辺三角形
+         */
         ISOSCELES,
+        /**
+         * 通常三角形（不等辺三角形）
+         */
         NORMAL
     }
 
@@ -27,13 +36,7 @@ class Triangle(private val x: Int, private val y: Int, private val z: Int) {
         if (x == y && y == z && z == x) {
             return Type.EQUILATERAL
         }
-        if (x == y) {
-            return Type.ISOSCELES
-        }
-        if (y == z) {
-            return Type.ISOSCELES
-        }
-        if (z == x) {
+        if (x == y || y == z || z == x) {
             return Type.ISOSCELES
         }
         return Type.NORMAL
